@@ -19,7 +19,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         })
 }]);
 
-app.controller("SobreController", function($scope, $http) {
+app.controller("SobreController", function($scope, $http, $route) {
     $scope.texto = "Entre com seu CEP:";
     $scope.registros = [];
     $scope.data = null;
@@ -51,7 +51,6 @@ app.controller("SobreController", function($scope, $http) {
         }
     }
     $scope.salvar = function() {
-        console.log("Você está salvando");
         $scope.objetoRegistro = { localidade: $scope.localidade, cep: $scope.cep, estado: $scope.estado };
         $scope.registros.push($scope.objetoRegistro);
         if ($scope.registros.length > 0) {
@@ -60,6 +59,21 @@ app.controller("SobreController", function($scope, $http) {
         else {
             $scope.mostrarTabela = false;;
         }
+    }
+    $scope.apagar = function(index){
+        console.log("Índice do registro: "+index);
+        var registroApagado = $scope.registros[0].localidade;
+        $scope.registros.splice(index,1);
+        alert("Registro de "+registroApagado+" foi apagado");
+        if ($scope.registros.length > 0) {
+            $scope.mostrarTabela = true;
+        }
+        else {
+            $scope.mostrarTabela = false;;
+        }
+    }
+    $scope.limpar = function(){
+        $route.reload();
     }
 });
 
