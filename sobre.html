@@ -1,0 +1,33 @@
+<h2>{{texto}}</h2>
+<form name="formulario">
+    <input type="text" name="cep" pattern="[0-9]{8}" title="Digite apenas os 8 dígitos. Ex: 95600000" ng-model="campoCep" autocomplete="off" placeholder="956000000" required/>
+    <input type="submit" value="Buscar" ng-click="buscar()"/>
+</form>
+<!--<div ng-include="'formPesquisa.html'"></div>-->
+<br/>
+<br/>
+<form ng-if="data">
+    Cidade: <input type="text" name="localidade" ng-model="localidade"/><br/><br/>
+    CEP: <input type="text" name="cep" ng-model="cep"/><br/><br/>
+    Estado: <input type="text" name="estado" ng-model="estado"/>
+    <input type="submit" value="Salvar" ng-click="salvar()"/>
+</form>
+<h2 ng-if="aviso">Nenhum registro encontrado</h2>
+<!--- Até essa parte está tudo correto-->
+<br/><br/>
+<table ng-show="mostrarTabela">
+    <thead>
+        <th>Cidade</th>
+        <th>CEP</th>
+        <th>Estado</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="registro in registros">
+            <td>{{registro.localidade}}</td>
+            <td>{{registro.cep}}</td>
+            <td>{{registro.estado}}</td>
+        </tr>
+    </tbody>
+</table>
+
+    
