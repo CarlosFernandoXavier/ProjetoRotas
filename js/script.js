@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ['ngRoute']);
+var app = angular.module("myApp", ['ngRoute', 'ngAnimate']);
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
@@ -9,9 +9,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: "HomeController"
         })
 
-        .when("/sobre", {
-            templateUrl: "sobre.html",
-            controller: "SobreController"
+        .when("/consulta", {
+            templateUrl: "consulta.html",
+            controller: "ConsultaController"
         })
         .when("/contato", {
             templateUrl: "contato.html",
@@ -19,11 +19,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         })
 }]);
 
-app.controller("SobreController", function($scope, $http, $route) {
+app.controller("ConsultaController", function($scope, $http, $route) {
     $scope.texto = "Entre com seu CEP:";
     $scope.registros = [];
     $scope.data = null;
     $scope.aviso = false;
+    $scope.mostraCamposInput = false;
     if ($scope.registros.length > 0) {
         $scope.mostrarTabela = true;
     }
@@ -43,8 +44,10 @@ app.controller("SobreController", function($scope, $http, $route) {
                     $scope.cep = $scope.data.cep;
                     $scope.estado = $scope.data.uf;
                     $scope.aviso = false;
+                    $scope.mostraCamposInput = true;
                 }
                 else {
+                    $scope.mostraCamposInput = false;
                     $scope.aviso = true;
                 }
             });
