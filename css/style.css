@@ -20,6 +20,12 @@ th {
     margin-top: 30px;
 }
 
+.imagem{
+    width: 150px;
+}
+.centralizar{
+    text-align: center;
+}
 /*TESTE*/
 
 .animate-if.ng-enter,
